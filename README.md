@@ -76,7 +76,6 @@ Excel output includes:
 - **ONNX Runtime** for C++ inference
 - **OpenCV** for image processing, frame handling, and visualization
 - **EasyOCR (Python)** for label text recognition
-- **Win32 UI** for the live desktop viewer
 - **Excel export** for final count and weight summary
 
 ## Overview
