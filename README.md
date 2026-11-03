@@ -4,9 +4,7 @@ A real-time computer vision system for detecting cartons from a live camera stre
 
 ## Project video
 
-**[Your video link he
 
-re]**
 
 ## Features
 
