@@ -2,7 +2,8 @@
 
 A real-time computer vision system for detecting cartons from a live camera stream, reading label text with OCR, counting cartons, and exporting results to Excel.
 
-## Project video
+## Project video link
+https://drive.google.com/file/d/19K9rEqU0Oi2FIxt3k0d7ghBBpIPVi3dd/view?usp=sharing
 
 
 
