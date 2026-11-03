@@ -1,3 +1,4 @@
+```markdown
 # Real-time Carton Detection & OCR
 
 A real-time computer vision system for detecting cartons from a live camera stream, reading product label text with OCR, counting cartons based on weight labels, and exporting the results to Excel.
@@ -22,22 +23,22 @@ A real-time computer vision system for detecting cartons from a live camera stre
 The project is built as a **C++ Windows desktop application** with a live UI.  
 The main realtime loop (camera capture, detection, tracking across frames, drawing boxes/text, and Excel update) runs in C++.
 
-A **Python side process** is used only where it is more practical:
+A **Python side process** is used for:
 
-1. YOLO model preparation / training workflow in Python
+1. Training the carton detection model with YOLO
 2. EasyOCR for reading English text from carton label crops
 
 So the final product is a hybrid system:
 
 - **C++** = live application + inference pipeline + UI
-- **Python** = model preparation + OCR service
+- **Python** = YOLO training workflow + OCR service
 
 ## Detection pipeline
 
 1. The app connects to a closed-circuit camera stream and receives live frames.
 2. Each frame is processed in C++ with OpenCV.
-3. A YOLOv8 model in **ONNX** format is loaded through ONNX Runtime.
-4. YOLO detects carton candidates and returns bounding boxes.
+3. The trained carton detection model is loaded in **ONNX** format through ONNX Runtime.
+4. The model detects carton candidates and returns bounding boxes.
 5. Each detected carton region is cropped from the frame.
 6. The crop is sent to a persistent EasyOCR Python process.
 7. OCR returns the label text for that carton.
@@ -45,17 +46,12 @@ So the final product is a hybrid system:
 9. Carton count is calculated from recognized `kg` values in the OCR text.
 10. When the count changes, results are written to an Excel file.
 
-## YOLO model usage
+## Carton detection model
 
-- The YOLO weights were prepared in a **Python / ultralytics-style workflow**.
-- After training or exporting, the model was converted to **ONNX**.
-- In the final application, those ONNX weights are used only for **inference in C++**.
-- This means Python is not required for the live detection loop itself; C++ handles realtime inference with ONNX Runtime.
-
-This approach gives two advantages:
-
-- reuse a model trained in the common Python YOLO ecosystem
-- keep the live app responsive and self-contained in C++
+- The carton detection model was **trained with YOLO** in a Python workflow.
+- After training, the model was exported to **ONNX** for deployment.
+- In the final application, inference runs in **C++** using ONNX Runtime and OpenCV.
+- This keeps training in the YOLO/Python ecosystem, while the live system stays fast and stable in C++.
 
 ## OCR and counting logic
 
@@ -65,7 +61,7 @@ After carton detection:
 - the crop is passed to EasyOCR
 - returned text is shown on the carton
 
-Counting is not based only on the number of YOLO boxes.  
+Counting is not based only on the number of detection boxes.  
 The system also uses OCR content and counts valid `kg` mentions, which better matches labeled product cartons in the scene.
 
 Excel output includes:
@@ -77,7 +73,8 @@ Excel output includes:
 ## Tech stack
 
 - **C++** for the main application, camera handling, inference loop, UI, and Excel export
-- **YOLOv8 + ONNX Runtime** for carton detection inference
+- **YOLO** for training the carton detection model
+- **ONNX Runtime** for C++ inference
 - **OpenCV** for image processing, frame handling, and visualization
 - **EasyOCR (Python)** for label text recognition
 - **Win32 UI** for the live desktop viewer
@@ -85,4 +82,5 @@ Excel output includes:
 
 ## Overview
 
-This project was built as a practical industrial vision tool for live carton recognition and weight-based counting from closed-circuit camera input. It combines a C++ realtime pipeline with a Python-trained YOLO model for inference and EasyOCR for label reading.
+This project was built as a practical industrial vision tool for live carton recognition and weight-based counting from closed-circuit camera input. It combines a C++ realtime pipeline with a YOLO-trained carton detection model and EasyOCR for label reading.
+```
