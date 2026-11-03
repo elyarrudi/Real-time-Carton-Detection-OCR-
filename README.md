@@ -1,4 +1,3 @@
-```markdown
 # Real-time Carton Detection & OCR
 
 A real-time computer vision system for detecting cartons from a live camera stream, reading product label text with OCR, counting cartons based on weight labels, and exporting the results to Excel.
@@ -83,4 +82,3 @@ Excel output includes:
 ## Overview
 
 This project was built as a practical industrial vision tool for live carton recognition and weight-based counting from closed-circuit camera input. It combines a C++ realtime pipeline with a YOLO-trained carton detection model and EasyOCR for label reading.
-```
