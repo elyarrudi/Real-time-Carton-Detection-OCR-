@@ -8,7 +8,7 @@ A real-time computer vision system for detecting cartons from a live camera stre
 
 ## Features
 
-- Live carton detection from an IP camera stream
+- Live carton detection from a CCTV / closed-circuit camera stream
 - OCR for product labels
 - Carton counting based on detected `kg` values
 - Overlay of extracted text on each detected carton
@@ -34,7 +34,7 @@ So the final product is a hybrid system:
 
 ## Detection pipeline
 
-1. The app connects to a phone IP camera stream and receives live frames.
+1. The app connects to a closed-circuit camera stream and receives live frames.
 2. Each frame is processed in C++ with OpenCV.
 3. A YOLOv8 model in **ONNX** format is loaded through ONNX Runtime.
 4. YOLO detects carton candidates and returns bounding boxes.
@@ -85,4 +85,4 @@ Excel output includes:
 
 ## Overview
 
-This project was built as a practical industrial vision tool for live carton recognition and weight-based counting from camera input. It combines a C++ realtime pipeline with a Python-trained YOLO model for inference and EasyOCR for label reading.
+This project was built as a practical industrial vision tool for live carton recognition and weight-based counting from closed-circuit camera input. It combines a C++ realtime pipeline with a Python-trained YOLO model for inference and EasyOCR for label reading.
