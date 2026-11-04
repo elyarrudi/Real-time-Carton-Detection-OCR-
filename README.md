@@ -1,5 +1,7 @@
 # Real-time Carton Detection & OCR
 
+![Project demo](./carton-detection-demo.gif)
+
 A real-time computer vision system for detecting cartons from a live camera stream, reading product label text with OCR, counting cartons based on weight labels, and exporting the results to Excel.
 
 ## Project video
